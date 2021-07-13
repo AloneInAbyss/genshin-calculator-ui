@@ -1,0 +1,20 @@
+.text-medium {
+  font-size: 20px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.img-150-white {
+  max-width: 150px;
+  border: 1px solid white;
+}
+
+.selector-70 {
+  max-width: 70%;
+}
+
+#btn-calculate {
+  margin-right: 15px;
+}
