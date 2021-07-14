@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import Characters from "../utils/Characters";
 import '../styles/Calculations.css';
 
 function CharUpgrade() {
+  const [charImg, setCharImg] = useState('');
+
   let charactersOptions = [];
-  for (let char of Characters) {
+  for (let char in Characters) {
     charactersOptions.push(<option>{char}</option>);
   }
 
@@ -17,14 +20,19 @@ function CharUpgrade() {
         <Row className="align-items-center">
           <Col className="text-center">
             <img 
-              src="https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/albedo/icon.png"
+              src={charImg ? Characters[charImg].img : Characters['Albedo'].img}
               alt="Imagem do personagem"
               className="img-150-white"
             />
 
             <Form.Group controlId="form-select-character">
               <Form.Label className="text-medium">Personagem</Form.Label>
-              <Form.Control size="lg" as="select" className="selector-70 mx-auto">
+              <Form.Control 
+                size="lg"
+                as="select"
+                className="selector-70 mx-auto"
+                onChange={(event) => setCharImg(event.target.value)}
+              >
                 {charactersOptions}
               </Form.Control>
             </Form.Group>
