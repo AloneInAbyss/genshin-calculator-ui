@@ -53,11 +53,11 @@ function CharUpgrade() {
     const form = event.currentTarget;
     if (
       form.checkValidity() === false ||
-      !(initialLevel >= 1) ||
-      !(initialLevel < 90) ||
-      !(finalLevel > 1) ||
-      !(finalLevel <= 90) ||
-      initialLevel > finalLevel
+      !(parseInt(initialLevel) >= 1) ||
+      !(parseInt(initialLevel) < 90) ||
+      !(parseInt(finalLevel) > 1) ||
+      !(parseInt(finalLevel) <= 90) ||
+      parseInt(initialLevel) >= parseInt(finalLevel)
     ) {
       event.preventDefault();
       event.stopPropagation();
