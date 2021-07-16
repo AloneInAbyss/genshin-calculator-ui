@@ -49,6 +49,9 @@ const Characters = {
   'Kaeya': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/kaeya/icon.png',
   },
+  'Kazuha': {
+    img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/kazuha/icon.png',
+  },
   'Keqing': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/keqing/icon.png',
   },

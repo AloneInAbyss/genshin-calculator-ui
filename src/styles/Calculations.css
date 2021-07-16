@@ -6,13 +6,19 @@
   text-align: right;
 }
 
-.img-150-white {
+.max-w-150px {
   max-width: 150px;
+}
+
+.b-white {
   border: 1px solid white;
 }
 
-.selector-70 {
+.max-w-70 {
   max-width: 70%;
+}
+.max-w-90 {
+  max-width: 90%;
 }
 
 #btn-calculate {
