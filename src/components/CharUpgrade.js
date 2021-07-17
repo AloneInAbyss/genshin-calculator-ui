@@ -74,8 +74,7 @@ function CharUpgrade() {
   }
 
   return (
-    <div>
-      <h1 className="display-4 text-center py-3">Cálculos</h1>
+    <>
       <h2 className="display-6 pt-2 pb-4">Melhoria de Personagem</h2>
 
       <Form onSubmit={handleSubmit} noValidate validated={validated}>
@@ -220,7 +219,7 @@ function CharUpgrade() {
           </Button>
         </div>
       </Form>
-    </div>
+    </>
   )
 }
 

@@ -4,9 +4,10 @@ import './styles/App.css';
 function App() {
   return (
     <div className="container">
-      <div id="content" className="col-8 mx-auto bg-dark text-light">
+      <main id="content" className="col-8 mx-auto bg-dark text-light">
+        <h1 className="display-4 text-center py-3">Cálculos</h1>
         <CharUpgrade />
-      </div>
+      </main>
     </div>
   );
 }
