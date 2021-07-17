@@ -8,6 +8,7 @@ function CharUpgrade() {
   const [validated, setValidated] = useState(false);
   const [initialLevel, setInitialLevel] = useState('');
   const [finalLevel, setFinalLevel] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false);
   const [isInitialAscensionAvailable, setIsInitialAscensionAvailable] = useState(false);
   const [isFinalAscensionAvailable, setIsFinalAscensionAvailable] = useState(false);
 
@@ -59,6 +60,11 @@ function CharUpgrade() {
       !(parseInt(finalLevel) <= 90) ||
       parseInt(initialLevel) >= parseInt(finalLevel)
     ) {
+      if (parseInt(initialLevel) >= parseInt(finalLevel))
+        setErrorMessage(true);
+      else
+        setErrorMessage(false);
+
       event.preventDefault();
       event.stopPropagation();
     }
@@ -69,6 +75,9 @@ function CharUpgrade() {
   const clearForm = (event) => {
     setInitialLevel('');
     setFinalLevel('');
+    setIsInitialAscensionAvailable(false);
+    setIsFinalAscensionAvailable(false);
+    setErrorMessage(false);
 
     setValidated(false);
   }
@@ -101,22 +110,23 @@ function CharUpgrade() {
           </Col>
 
           <Col>
-            <Form.Group controlId="form-initial-level">
+            <Form.Group controlId="form-initial-level" className="position-relative">
               <Form.Label className="text-medium">Nível inicial</Form.Label>
-              <Form.Control
-                required
-                size="lg"
-                type="number"
-                min="1" max="89"
-                name="initial-level"
-                value={initialLevel}
-                onChange={verifyInitialAscension}
-                className="max-w-90 mx-auto"
-                placeholder="Digite o nível atual"
-              />
-              <Form.Control.Feedback type="invalid" className="max-w-90 mx-auto">
-                Digite um valor entre 1 e 89.
-              </Form.Control.Feedback>
+              <div className="max-w-90 mx-auto">
+                <Form.Control
+                  required
+                  size="lg"
+                  type="number"
+                  min="1" max="89"
+                  name="initial-level"
+                  value={initialLevel}
+                  onChange={verifyInitialAscension}
+                  placeholder="Digite o nível atual"
+                />
+                <Form.Control.Feedback tooltip type="invalid">
+                  Digite um valor entre 1 e 89.
+                </Form.Control.Feedback>
+              </div>
             </Form.Group>
 
             <div key="initial-ascension" className="my-2">
@@ -154,22 +164,23 @@ function CharUpgrade() {
               </Row>
             </div>
 
-            <Form.Group controlId="form-final-level" className="pt-2">
+            <Form.Group controlId="form-final-level" className="pt-2 position-relative">
               <Form.Label className="text-medium">Nível final</Form.Label>
-              <Form.Control
-                required
-                size="lg"
-                type="number"
-                min="2" max="90"
-                name="final-level"
-                value={finalLevel}
-                onChange={verifyFinalAscension}
-                className="max-w-90 mx-auto"
-                placeholder="Digite o nível desejado"
-              />
-              <Form.Control.Feedback type="invalid" className="max-w-90 mx-auto">
-                Digite um valor entre 2 e 90.
-              </Form.Control.Feedback>
+              <div className="max-w-90 mx-auto">
+                <Form.Control
+                  required
+                  size="lg"
+                  type="number"
+                  min="2" max="90"
+                  name="final-level"
+                  value={finalLevel}
+                  onChange={verifyFinalAscension}
+                  placeholder="Digite o nível desejado"
+                />
+                <Form.Control.Feedback tooltip type="invalid">
+                  Digite um valor entre 2 e 90.
+                </Form.Control.Feedback>
+              </div>
             </Form.Group>
 
             <div key="final-ascension" className="my-2">
@@ -208,6 +219,14 @@ function CharUpgrade() {
             </div>
           </Col>
         </Row>
+
+        <div
+          className={
+            errorMessage ?
+            "error-message text-center" :
+            "error-message d-none text-center"
+          }
+        >O nível inicial deve ser maior que o final!</div>
 
         <div className="mt-3 d-flex justify-content-center">
           <Button size="lg" variant="primary" type="submit" className="w-25" id="btn-calculate">
