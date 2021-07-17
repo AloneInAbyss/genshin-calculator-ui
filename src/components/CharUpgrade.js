@@ -4,13 +4,15 @@ import Characters from "../utils/Characters";
 import '../styles/Calculations.css';
 
 function CharUpgrade() {
-  const [charImg, setCharImg] = useState('');
-  const [validated, setValidated] = useState(false);
+  const [character, setCharacter] = useState(Object.keys(Characters)[0]);
   const [initialLevel, setInitialLevel] = useState('');
   const [finalLevel, setFinalLevel] = useState('');
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [initialAscension, setInitialAscension] = useState('no');
+  const [finalAscension, setFinalAscension] = useState('no');
   const [isInitialAscensionAvailable, setIsInitialAscensionAvailable] = useState(false);
   const [isFinalAscensionAvailable, setIsFinalAscensionAvailable] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [validated, setValidated] = useState(false);
 
   const charactersOptions = [];
   for (let char in Characters) {
@@ -51,6 +53,9 @@ function CharUpgrade() {
   }
 
   const handleSubmit = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     const form = event.currentTarget;
     if (
       form.checkValidity() === false ||
@@ -64,9 +69,18 @@ function CharUpgrade() {
         setErrorMessage(true);
       else
         setErrorMessage(false);
+    }
+    else {
+      
+      let output = '';
+      output += 'Character: ' + character;
+      output += '\nInitial level: ' + initialLevel;
+      output += '\nFinal level: ' + finalLevel;
+      output += '\nInitial ascension? ' + initialAscension;
+      output += '\nFinal ascension? ' + finalAscension;
 
-      event.preventDefault();
-      event.stopPropagation();
+      console.log(output);
+
     }
 
     setValidated(true);
@@ -75,6 +89,8 @@ function CharUpgrade() {
   const clearForm = (event) => {
     setInitialLevel('');
     setFinalLevel('');
+    setInitialAscension('no');
+    setFinalAscension('no');
     setIsInitialAscensionAvailable(false);
     setIsFinalAscensionAvailable(false);
     setErrorMessage(false);
@@ -90,7 +106,7 @@ function CharUpgrade() {
         <Row className="align-items-center">
           <Col className="text-center">
             <img 
-              src={charImg ? Characters[charImg].img : Characters[Object.keys(Characters)[0]].img}
+              src={Characters[character].img}
               alt="Imagem do personagem"
               className="max-w-150px b-white"
             />
@@ -102,7 +118,8 @@ function CharUpgrade() {
                 as="select"
                 name="character"
                 className="max-w-70 mx-auto"
-                onChange={(event) => setCharImg(event.target.value)}
+                value={character}
+                onChange={(event) => setCharacter(event.target.value)}
               >
                 {charactersOptions}
               </Form.Control>
@@ -129,40 +146,41 @@ function CharUpgrade() {
               </div>
             </Form.Group>
 
-            <div key="initial-ascension" className="my-2">
-              <Row className="align-items-center">
-                <Col className="text-right">
-                  <Form.Label
-                    id="initialAscensionText"
-                    className={isInitialAscensionAvailable ? '' : 'text-muted' }
-                  >
-                    Com ascensão para os próximos níveis?
-                  </Form.Label>
-                </Col>
-                <Col>
-                  <Form.Check 
-                    inline
-                    disabled={!isInitialAscensionAvailable}
-                    name="initial-ascension"
-                    type="radio"
-                    id="initial-ascension-yes"
-                    value="yes"
-                    label="Sim"
-                  />
+            <Row className="align-items-center my-2">
+              <Col className="text-right">
+                <Form.Label
+                  id="initialAscensionText"
+                  className={isInitialAscensionAvailable ? '' : 'text-muted' }
+                >
+                  Com ascensão para os próximos níveis?
+                </Form.Label>
+              </Col>
+              <Col>
+                <Form.Check 
+                  inline
+                  disabled={!isInitialAscensionAvailable}
+                  name="initial-ascension"
+                  type="radio"
+                  id="initial-ascension-yes"
+                  value="yes"
+                  label="Sim"
+                  checked={initialAscension === 'yes' ? true : false}
+                  onChange={(e) => setInitialAscension(e.target.value)}
+                />
 
-                  <Form.Check
-                    inline
-                    disabled={!isInitialAscensionAvailable}
-                    defaultChecked
-                    name="initial-ascension"
-                    type="radio"
-                    id="initial-ascension-no"
-                    value="no"
-                    label="Não"
-                  />
-                </Col>
-              </Row>
-            </div>
+                <Form.Check
+                  inline
+                  disabled={!isInitialAscensionAvailable}
+                  name="initial-ascension"
+                  type="radio"
+                  id="initial-ascension-no"
+                  value="no"
+                  label="Não"
+                  checked={initialAscension === 'no' ? true : false}
+                  onChange={(e) => setInitialAscension(e.target.value)}
+                />
+              </Col>
+            </Row>
 
             <Form.Group controlId="form-final-level" className="pt-2 position-relative">
               <Form.Label className="text-medium">Nível final</Form.Label>
@@ -183,40 +201,41 @@ function CharUpgrade() {
               </div>
             </Form.Group>
 
-            <div key="final-ascension" className="my-2">
-              <Row className="align-items-center">
-                <Col className="text-right">
-                  <Form.Label
-                    id="finalAscensionText"
-                    className={isFinalAscensionAvailable ? '' : 'text-muted' }
-                  >
-                    Com ascensão para os próximos níveis?
-                  </Form.Label>
-                </Col>
-                <Col>
-                  <Form.Check 
-                    inline
-                    disabled={!isFinalAscensionAvailable}
-                    name="final-ascension"
-                    type="radio"
-                    id="final-ascension-yes"
-                    value="yes"
-                    label="Sim"
-                  />
+            <Row className="align-items-center my-2">
+              <Col className="text-right">
+                <Form.Label
+                  id="finalAscensionText"
+                  className={isFinalAscensionAvailable ? '' : 'text-muted' }
+                >
+                  Com ascensão para os próximos níveis?
+                </Form.Label>
+              </Col>
+              <Col>
+                <Form.Check 
+                  inline
+                  disabled={!isFinalAscensionAvailable}
+                  name="final-ascension"
+                  type="radio"
+                  id="final-ascension-yes"
+                  value="yes"
+                  label="Sim"
+                  checked={finalAscension === 'yes' ? true : false}
+                  onChange={(e) => setFinalAscension(e.target.value)}
+                />
 
-                  <Form.Check
-                    inline
-                    disabled={!isFinalAscensionAvailable}
-                    defaultChecked
-                    name="final-ascension"
-                    type="radio"
-                    id="final-ascension-no"
-                    value="no"
-                    label="Não"
-                  />
-                </Col>
-              </Row>
-            </div>
+                <Form.Check
+                  inline
+                  disabled={!isFinalAscensionAvailable}
+                  name="final-ascension"
+                  type="radio"
+                  id="final-ascension-no"
+                  value="no"
+                  label="Não"
+                  checked={finalAscension === 'no' ? true : false}
+                  onChange={(e) => setFinalAscension(e.target.value)}
+                />
+              </Col>
+            </Row>
           </Col>
         </Row>
 
@@ -226,7 +245,9 @@ function CharUpgrade() {
             "error-message text-center" :
             "error-message d-none text-center"
           }
-        >O nível inicial deve ser maior que o final!</div>
+        >
+          O nível inicial deve ser maior que o nível final!
+        </div>
 
         <div className="mt-3 d-flex justify-content-center">
           <Button size="lg" variant="primary" type="submit" className="w-25" id="btn-calculate">
