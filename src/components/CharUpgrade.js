@@ -111,10 +111,10 @@ function CharUpgrade(props) {
 
   return (
     <>
-      <h2 className="display-6 pt-2 pb-4">Melhoria de Personagem</h2>
+      <h2 className="display-6 pt-2 pb-4 no-word-break">Melhoria de Personagem</h2>
 
       <Form onSubmit={handleSubmit} noValidate validated={validated}>
-        <Row className="align-items-center">
+        <Row xs={1} sm={2} className="align-items-center">
           <Col className="text-center">
             <img 
               src={Characters[character].img}
@@ -122,13 +122,13 @@ function CharUpgrade(props) {
               className="max-w-150px b-white"
             />
 
-            <Form.Group controlId="form-select-character">
+            <Form.Group controlId="form-select-character" className="max-w-90 mx-auto">
               <Form.Label className="text-medium">Personagem</Form.Label>
               <Form.Control 
                 size="lg"
                 as="select"
                 name="character"
-                className="max-w-70 mx-auto"
+                className="form-txt-input txt-select mx-auto"
                 value={character}
                 onChange={(event) => setCharacter(event.target.value)}
               >
@@ -137,8 +137,8 @@ function CharUpgrade(props) {
             </Form.Group>
           </Col>
 
-          <Col>
-            <Form.Group controlId="form-initial-level" className="position-relative">
+          <Col className="mt-4 mt-sm-0">
+            <Form.Group controlId="form-initial-level" className="pt-2 pt-sm-0 position-relative">
               <Form.Label className="text-medium">Nível inicial</Form.Label>
               <div className="max-w-90 mx-auto">
                 <Form.Control
@@ -148,6 +148,7 @@ function CharUpgrade(props) {
                   min="1" max="89"
                   name="initial-level"
                   value={initialLevel}
+                  className="form-txt-input mx-auto"
                   onChange={verifyInitialAscension}
                   placeholder="Digite o nível atual"
                 />
@@ -157,8 +158,8 @@ function CharUpgrade(props) {
               </div>
             </Form.Group>
 
-            <Row className="align-items-center my-2">
-              <Col className="text-right">
+            <Row xs={1} md={2} className="align-items-center my-2">
+              <Col className="text-center text-sm-start text-md-end">
                 <Form.Label
                   id="initialAscensionText"
                   className={isInitialAscensionAvailable ? '' : 'text-muted' }
@@ -166,7 +167,7 @@ function CharUpgrade(props) {
                   Com ascensão para os próximos níveis?
                 </Form.Label>
               </Col>
-              <Col>
+              <Col className="text-center text-md-start">
                 <Form.Check 
                   inline
                   disabled={!isInitialAscensionAvailable}
@@ -193,7 +194,7 @@ function CharUpgrade(props) {
               </Col>
             </Row>
 
-            <Form.Group controlId="form-final-level" className="pt-2 position-relative">
+            <Form.Group controlId="form-final-level" className="pt-2 position-relative mt-4 mt-sm-0">
               <Form.Label className="text-medium">Nível final</Form.Label>
               <div className="max-w-90 mx-auto">
                 <Form.Control
@@ -203,6 +204,7 @@ function CharUpgrade(props) {
                   min="2" max="90"
                   name="final-level"
                   value={finalLevel}
+                  className="form-txt-input mx-auto"
                   onChange={verifyFinalAscension}
                   placeholder="Digite o nível desejado"
                 />
@@ -212,8 +214,8 @@ function CharUpgrade(props) {
               </div>
             </Form.Group>
 
-            <Row className="align-items-center my-2">
-              <Col className="text-right">
+            <Row xs={1} md={2} className="align-items-center my-2">
+              <Col className="text-center text-sm-start text-md-end">
                 <Form.Label
                   id="finalAscensionText"
                   className={isFinalAscensionAvailable ? '' : 'text-muted' }
@@ -221,7 +223,7 @@ function CharUpgrade(props) {
                   Com ascensão para os próximos níveis?
                 </Form.Label>
               </Col>
-              <Col>
+              <Col className="text-center text-md-start">
                 <Form.Check 
                   inline
                   disabled={!isFinalAscensionAvailable}
@@ -260,15 +262,18 @@ function CharUpgrade(props) {
           O nível final deve ser maior que o nível inicial!
         </div>
 
-        <div className="mt-3 d-flex justify-content-center">
-          <Button size="lg" variant="primary" type="submit" className="w-25" id="btn-calculate">
-            Calcular
-          </Button>
-
-          <Button size="lg" variant="danger" className="w-25" onClick={clearForm}>
-            Limpar
-          </Button>
-        </div>
+        <Row className="mt-3 d-flex justify-content-center">
+          <Col className="text-center text-sm-end mt-1">
+            <Button size="lg" variant="primary" type="submit" className="w-100 form-btn" id="btn-calculate">
+              Calcular
+            </Button>
+          </Col>
+          <Col className="text-center text-sm-start mt-1">
+            <Button size="lg" variant="danger" className="w-100 form-btn" onClick={clearForm}>
+              Limpar
+            </Button>
+          </Col>
+        </Row>
       </Form>
     </>
   )

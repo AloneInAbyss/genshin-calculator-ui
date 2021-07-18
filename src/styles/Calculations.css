@@ -5,6 +5,12 @@
   color: #dc3545;
 }
 
-#btn-calculate {
-  margin-right: 15px;
+.form-btn {
+  max-width: 150px;
+}
+
+@media screen and (min-width: 576px) {
+  .txt-select {
+    max-width: 70%;
+  }
 }

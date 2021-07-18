@@ -7,16 +7,23 @@
   border: 1px solid white;
 }
 
+.no-word-break {
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
 .text-medium {
   font-size: 20px;
 }
 
-.text-right {
-  text-align: right;
-}
-
 .max-w-150px {
   max-width: 150px;
+}
+
+@media screen and (max-width: 576px) {
+  .form-txt-input {
+    max-width: 300px;
+  }
 }
 
 .max-w-70 {

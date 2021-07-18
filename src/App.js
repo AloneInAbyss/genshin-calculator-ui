@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Container } from "react-bootstrap";
 import CharUpgrade from './components/CharUpgrade';
 import Results from './components/Results';
 import './styles/App.css';
@@ -24,13 +25,13 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <main id="content" className="col-8 mx-auto bg-dark text-light">
+    <Container fluid="md">
+      <main id="content" className="col-12 col-lg-8 mx-auto bg-dark text-light">
         <h1 className="display-4 text-center py-3">Cálculos</h1>
         <CharUpgrade fetchData={fetchData} fetchImages={fetchImages} clearData={clearData} />
         <Results data={data} images={images} />
       </main>
-    </div>
+    </Container>
   );
 }
 
