@@ -1,4 +1,8 @@
 {
+<<<<<<< HEAD
+=======
+  "proxy": "https://genshin-calculator-api.herokuapp.com",
+>>>>>>> c3a106595d2418f2b848ede1184ce8652447cb55
   "name": "genshin-planner-ui",
   "version": "0.1.0",
   "private": true,
