@@ -3,7 +3,7 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import Characters from "../utils/Characters";
 import '../styles/Calculations.css';
 
-function CharUpgrade() {
+function CharUpgrade(props) {
   const [character, setCharacter] = useState(Object.keys(Characters)[0]);
   const [initialLevel, setInitialLevel] = useState('');
   const [finalLevel, setFinalLevel] = useState('');
@@ -71,27 +71,14 @@ function CharUpgrade() {
         setErrorMessage(false);
     }
     else {
-      
-      let output = '';
-      output += 'Character: ' + character;
-      output += '\nInitial level: ' + initialLevel;
-      output += '\nFinal level: ' + finalLevel;
-      output += '\nInitial ascension? ' + initialAscension;
-      output += '\nFinal ascension? ' + finalAscension;
-
-      console.log(output);
-
       let URL = '/ascension/character?';
       URL += 'character=' + character;
       URL += '&initial-level=' + initialLevel;
       URL += '&final-level=' + finalLevel;
       URL += '&initial-ascension=' + initialAscension;
       URL += '&final-ascension=' + finalAscension;
-      fetch(URL)
-        .then(response => response.json())
-        .then(data => console.log(data));
 
-      console.log(URL);
+      props.fetchData(URL);
     }
 
     setValidated(true);
@@ -107,6 +94,7 @@ function CharUpgrade() {
     setErrorMessage(false);
 
     setValidated(false);
+    props.clearData();
   }
 
   return (
