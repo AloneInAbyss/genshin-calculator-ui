@@ -81,6 +81,17 @@ function CharUpgrade() {
 
       console.log(output);
 
+      let URL = '/ascension/character?';
+      URL += 'character=' + character;
+      URL += '&initial-level=' + initialLevel;
+      URL += '&final-level=' + finalLevel;
+      URL += '&initial-ascension=' + initialAscension;
+      URL += '&final-ascension=' + finalAscension;
+      fetch(URL)
+        .then(response => response.json())
+        .then(data => console.log(data));
+
+      console.log(URL);
     }
 
     setValidated(true);
