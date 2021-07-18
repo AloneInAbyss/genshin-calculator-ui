@@ -2,3 +2,27 @@
   min-height: 100vh;
   padding: 25px;
 }
+
+.b-white {
+  border: 1px solid white;
+}
+
+.text-medium {
+  font-size: 20px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.max-w-150px {
+  max-width: 150px;
+}
+
+.max-w-70 {
+  max-width: 70%;
+}
+
+.max-w-90 {
+  max-width: 90%;
+}

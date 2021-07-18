@@ -1,3 +1,12 @@
-code {
-  display: block;
+.image-results div {
+  display: inline-block;
+}
+
+.image-results p {
+  text-align: center;
+}
+
+.image-results img {
+  max-width: 75px;
+  border: 1px solid white;
 }

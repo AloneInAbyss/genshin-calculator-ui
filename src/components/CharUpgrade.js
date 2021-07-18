@@ -7,8 +7,8 @@ function CharUpgrade(props) {
   const [character, setCharacter] = useState(Object.keys(Characters)[0]);
   const [initialLevel, setInitialLevel] = useState('');
   const [finalLevel, setFinalLevel] = useState('');
-  const [initialAscension, setInitialAscension] = useState('no');
-  const [finalAscension, setFinalAscension] = useState('no');
+  const [initialAscension, setInitialAscension] = useState('false');
+  const [finalAscension, setFinalAscension] = useState('false');
   const [isInitialAscensionAvailable, setIsInitialAscensionAvailable] = useState(false);
   const [isFinalAscensionAvailable, setIsFinalAscensionAvailable] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -65,20 +65,32 @@ function CharUpgrade(props) {
       !(parseInt(finalLevel) <= 90) ||
       parseInt(initialLevel) >= parseInt(finalLevel)
     ) {
-      if (parseInt(initialLevel) >= parseInt(finalLevel))
+      if (
+        parseInt(initialLevel) >= parseInt(finalLevel) &&
+        !(initialAscension === 'false' && finalAscension === 'true')
+      )
         setErrorMessage(true);
       else
         setErrorMessage(false);
     }
     else {
       let URL = '/ascension/character?';
-      URL += 'character=' + character;
-      URL += '&initial-level=' + initialLevel;
+      URL += 'initial-level=' + initialLevel;
       URL += '&final-level=' + finalLevel;
       URL += '&initial-ascension=' + initialAscension;
       URL += '&final-ascension=' + finalAscension;
-
       props.fetchData(URL);
+
+      if (character === 'Hu Tao') {
+        URL = `https://genshin-app-api.herokuapp.com/api/characters/info/Hutao`;
+      }
+      else if (character === 'Traveler') {
+        URL = `https://genshin-app-api.herokuapp.com/api/characters/info/Traveler (Anemo)`;
+      }
+      else {
+        URL = `https://genshin-app-api.herokuapp.com/api/characters/info/${character}`;
+      }
+      props.fetchImages(URL);
     }
 
     setValidated(true);
@@ -87,8 +99,8 @@ function CharUpgrade(props) {
   const clearForm = (event) => {
     setInitialLevel('');
     setFinalLevel('');
-    setInitialAscension('no');
-    setFinalAscension('no');
+    setInitialAscension('false');
+    setFinalAscension('false');
     setIsInitialAscensionAvailable(false);
     setIsFinalAscensionAvailable(false);
     setErrorMessage(false);
@@ -161,9 +173,9 @@ function CharUpgrade(props) {
                   name="initial-ascension"
                   type="radio"
                   id="initial-ascension-yes"
-                  value="yes"
+                  value="true"
                   label="Sim"
-                  checked={initialAscension === 'yes' ? true : false}
+                  checked={initialAscension === 'true' ? true : false}
                   onChange={(e) => setInitialAscension(e.target.value)}
                 />
 
@@ -173,9 +185,9 @@ function CharUpgrade(props) {
                   name="initial-ascension"
                   type="radio"
                   id="initial-ascension-no"
-                  value="no"
+                  value="false"
                   label="Não"
-                  checked={initialAscension === 'no' ? true : false}
+                  checked={initialAscension === 'false' ? true : false}
                   onChange={(e) => setInitialAscension(e.target.value)}
                 />
               </Col>
@@ -216,9 +228,9 @@ function CharUpgrade(props) {
                   name="final-ascension"
                   type="radio"
                   id="final-ascension-yes"
-                  value="yes"
+                  value="true"
                   label="Sim"
-                  checked={finalAscension === 'yes' ? true : false}
+                  checked={finalAscension === 'true' ? true : false}
                   onChange={(e) => setFinalAscension(e.target.value)}
                 />
 
@@ -228,9 +240,9 @@ function CharUpgrade(props) {
                   name="final-ascension"
                   type="radio"
                   id="final-ascension-no"
-                  value="no"
+                  value="false"
                   label="Não"
-                  checked={finalAscension === 'no' ? true : false}
+                  checked={finalAscension === 'false' ? true : false}
                   onChange={(e) => setFinalAscension(e.target.value)}
                 />
               </Col>
@@ -245,7 +257,7 @@ function CharUpgrade(props) {
             "error-message d-none text-center"
           }
         >
-          O nível inicial deve ser maior que o nível final!
+          O nível final deve ser maior que o nível inicial!
         </div>
 
         <div className="mt-3 d-flex justify-content-center">
