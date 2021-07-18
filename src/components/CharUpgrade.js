@@ -74,7 +74,7 @@ function CharUpgrade(props) {
         setErrorMessage(false);
     }
     else {
-      let URL = '/ascension/character?';
+      let URL = 'https://genshin-calculator-api.herokuapp.com/ascension/character?';
       URL += 'initial-level=' + initialLevel;
       URL += '&final-level=' + finalLevel;
       URL += '&initial-ascension=' + initialAscension;
