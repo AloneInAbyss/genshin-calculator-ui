@@ -58,20 +58,19 @@ function CharUpgrade(props) {
 
     const form = event.currentTarget;
     if (
+      parseInt(initialLevel) > parseInt(finalLevel) ||
+      (parseInt(initialLevel) === parseInt(finalLevel) && initialAscension === 'true') ||
+      (parseInt(initialLevel) === parseInt(finalLevel) && finalAscension === 'false')
+    )
+      setErrorMessage(true);
+    else if (
       form.checkValidity() === false ||
       !(parseInt(initialLevel) >= 1) ||
       !(parseInt(initialLevel) < 90) ||
       !(parseInt(finalLevel) > 1) ||
-      !(parseInt(finalLevel) <= 90) ||
-      parseInt(initialLevel) >= parseInt(finalLevel)
+      !(parseInt(finalLevel) <= 90)
     ) {
-      if (
-        parseInt(initialLevel) >= parseInt(finalLevel) &&
-        !(initialAscension === 'false' && finalAscension === 'true')
-      )
-        setErrorMessage(true);
-      else
-        setErrorMessage(false);
+      setErrorMessage(false);
     }
     else {
       let URL = 'https://genshin-calculator-api.herokuapp.com/ascension/character?';

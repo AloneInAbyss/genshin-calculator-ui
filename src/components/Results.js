@@ -18,24 +18,39 @@ function Results(props) {
 
       <h2>Resultado: </h2>
 
-      <Row className="mt-3 image-results xs-max-350px row justify-content-center mx-auto">
-        <Col xs="4" sm="2">
-          <img src={
-            props.images.payload.character.commonAscensionMaterials[0].iconUrl
-          } alt="Material comum de uma estrela" />
-          <p>x{props.data.commonMaterialsRarityOne}</p>
+      <Row className="mt-3 image-results xs-max-250px row justify-content-center mx-auto">
+        <Col xs="5" sm="2">
+          {
+            props.images.payload.character.ascensionMaterials[4] ? 
+              <>
+                <img src={
+                  props.images.payload.character.ascensionMaterials[4].iconUrl
+                } alt="Material de boss" /> 
+                <p>x{props.data.eliteBossMaterials}</p>
+              </>
+              :
+              ''
+          }
         </Col>
-        <Col xs="4" sm="2">
+        <Col xs="5" sm="2">
           <img src={
-            props.images.payload.character.commonAscensionMaterials[1].iconUrl
-          } alt="Material comum de duas estrelas" />
-          <p>x{props.data.commonMaterialsRarityTwo}</p>
+            props.images.payload.character.localSpecialty.iconUrl
+          } alt="Especialidade local" />
+          <p>x{props.data.localSpecialities}</p>
         </Col>
-        <Col xs="4" sm="2">
-          <img src={
-            props.images.payload.character.commonAscensionMaterials[2].iconUrl
-          } alt="Material comum de três estrelas" />
-          <p>x{props.data.ascensionGemsRarityThree}</p>
+        <Col xs="5" sm="2">
+          <img
+            src="https://static.wikia.nocookie.net/gensin-impact/images/2/26/Item_Hero's_Wit.png"
+            alt="Livro de experiência" 
+          />
+          <p>x{props.data.expBooks}</p>
+        </Col>
+        <Col xs="5" sm="2">
+          <img
+            src="https://static.wikia.nocookie.net/gensin-impact/images/8/84/Item_Mora.png"
+            alt="Mora" 
+          />
+          <p>{numberWithCommas(props.data.mora)}</p>
         </Col>
       </Row>
       <Row className="mt-3 image-results xs-max-250px row justify-content-center mx-auto">
@@ -66,30 +81,22 @@ function Results(props) {
       </Row>
       <Row className="mt-3 image-results xs-max-350px row justify-content-center mx-auto">
         <Col xs="4" sm="2">
-          {
-            props.images.payload.character.ascensionMaterials[4] ? 
-              <>
-                <img src={
-                  props.images.payload.character.ascensionMaterials[4].iconUrl
-                } alt="Material de boss" /> 
-                <p>x{props.data.eliteBossMaterials}</p>
-              </>
-              :
-              ''
-          }
+          <img src={
+            props.images.payload.character.commonAscensionMaterials[0].iconUrl
+          } alt="Material comum de uma estrela" />
+          <p>x{props.data.commonMaterialsRarityOne}</p>
         </Col>
         <Col xs="4" sm="2">
           <img src={
-            props.images.payload.character.localSpecialty.iconUrl
-          } alt="Especialidade local" />
-          <p>x{props.data.localSpecialities}</p>
+            props.images.payload.character.commonAscensionMaterials[1].iconUrl
+          } alt="Material comum de duas estrelas" />
+          <p>x{props.data.commonMaterialsRarityTwo}</p>
         </Col>
         <Col xs="4" sm="2">
-          <img
-            src="https://static.wikia.nocookie.net/gensin-impact/images/8/84/Item_Mora.png"
-            alt="Mora" 
-          />
-          <p>{numberWithCommas(props.data.mora)}</p>
+          <img src={
+            props.images.payload.character.commonAscensionMaterials[2].iconUrl
+          } alt="Material comum de três estrelas" />
+          <p>x{props.data.ascensionGemsRarityThree}</p>
         </Col>
       </Row>
     </>
