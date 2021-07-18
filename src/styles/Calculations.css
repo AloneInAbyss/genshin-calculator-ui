@@ -14,3 +14,9 @@
     max-width: 70%;
   }
 }
+
+@media screen and (max-width: 576px) {
+  .form-txt-input {
+    max-width: 300px;
+  }
+}

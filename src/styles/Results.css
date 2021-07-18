@@ -1,12 +1,19 @@
 .image-results div {
+  text-align: center;
   display: inline-block;
 }
 
-.image-results p {
-  text-align: center;
-}
-
 .image-results img {
+  margin: auto;
   max-width: 75px;
   border: 1px solid white;
+}
+
+@media screen and (max-width: 576px) {
+  .xs-max-350px {
+    max-width: 350px;
+  }
+  .xs-max-250px {
+    max-width: 250px;
+  }
 }

@@ -20,12 +20,6 @@
   max-width: 150px;
 }
 
-@media screen and (max-width: 576px) {
-  .form-txt-input {
-    max-width: 300px;
-  }
-}
-
 .max-w-70 {
   max-width: 70%;
 }

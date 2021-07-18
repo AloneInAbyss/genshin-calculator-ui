@@ -1,3 +1,4 @@
+import { Col, Row } from 'react-bootstrap';
 import '../styles/Results.css';
 
 function numberWithCommas(x) {
@@ -17,50 +18,54 @@ function Results(props) {
 
       <h2>Resultado: </h2>
 
-      <div className="mt-3 image-results d-flex justify-content-center">
-        <div>
+      <Row className="mt-3 image-results xs-max-350px row justify-content-center mx-auto">
+        <Col xs="4" sm="2">
           <img src={
             props.images.payload.character.commonAscensionMaterials[0].iconUrl
           } alt="Material comum de uma estrela" />
           <p>x{props.data.commonMaterialsRarityOne}</p>
-        </div>
-        <div>
+        </Col>
+        <Col xs="4" sm="2">
           <img src={
             props.images.payload.character.commonAscensionMaterials[1].iconUrl
           } alt="Material comum de duas estrelas" />
           <p>x{props.data.commonMaterialsRarityTwo}</p>
-        </div>
-        <div>
+        </Col>
+        <Col xs="4" sm="2">
           <img src={
             props.images.payload.character.commonAscensionMaterials[2].iconUrl
           } alt="Material comum de três estrelas" />
           <p>x{props.data.ascensionGemsRarityThree}</p>
-        </div>
-        <div>
+        </Col>
+      </Row>
+      <Row className="mt-3 image-results xs-max-250px row justify-content-center mx-auto">
+        <Col xs="5" sm="2">
           <img src={
             props.images.payload.character.ascensionMaterials[0].iconUrl
           } alt="Material comum de ascensão de duas estrelas" />
           <p>x{props.data.ascensionGemsRarityTwo}</p>
-        </div>
-        <div>
+        </Col>
+        <Col xs="5" sm="2">
           <img src={
             props.images.payload.character.ascensionMaterials[1].iconUrl
           } alt="Material comum de ascensão de três estrelas" />
           <p>x{props.data.ascensionGemsRarityThree}</p>
-        </div>
-        <div>
+        </Col>
+        <Col xs="5" sm="2">
           <img src={
             props.images.payload.character.ascensionMaterials[2].iconUrl
           } alt="Material comum de ascensão de quatro estrelas" />
           <p>x{props.data.ascensionGemsRarityFour}</p>
-        </div>
-        <div>
+        </Col>
+        <Col xs="5" sm="2">
           <img src={
             props.images.payload.character.ascensionMaterials[3].iconUrl
           } alt="Material comum de ascensão de cinco estrelas" />
           <p>x{props.data.ascensionGemsRarityFive}</p>
-        </div>
-        <div>
+        </Col>
+      </Row>
+      <Row className="mt-3 image-results xs-max-350px row justify-content-center mx-auto">
+        <Col xs="4" sm="2">
           {
             props.images.payload.character.ascensionMaterials[4] ? 
               <>
@@ -72,21 +77,21 @@ function Results(props) {
               :
               ''
           }
-        </div>
-        <div>
+        </Col>
+        <Col xs="4" sm="2">
           <img src={
             props.images.payload.character.localSpecialty.iconUrl
           } alt="Especialidade local" />
           <p>x{props.data.localSpecialities}</p>
-        </div>
-        <div>
+        </Col>
+        <Col xs="4" sm="2">
           <img
             src="https://static.wikia.nocookie.net/gensin-impact/images/8/84/Item_Mora.png"
             alt="Mora" 
           />
           <p>{numberWithCommas(props.data.mora)}</p>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </>
   )
 }
