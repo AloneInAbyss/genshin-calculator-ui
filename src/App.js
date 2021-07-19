@@ -17,7 +17,7 @@ function App() {
   const fetchImages = (url) => {
     fetch(url)
       .then(res => res.json())
-      .then(data => {setImages(data);console.log(data)});
+      .then(data => setImages(data));
   }
 
   const clearData = () => {
