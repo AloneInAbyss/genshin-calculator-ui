@@ -81,10 +81,32 @@ function CharUpgrade(props) {
       props.fetchData(URL);
 
       if (character === 'Hu Tao') {
-        URL = `https://genshin-app-api.herokuapp.com/api/characters/info/Hutao`;
+        // URL = `https://genshin-app-api.herokuapp.com/api/characters/info/Hutao`;
+        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Hutao`;
+      }
+      else if (character === 'Kazuha') {
+        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Kazuha`;
       }
       else if (character === 'Traveler') {
         URL = `https://genshin-app-api.herokuapp.com/api/characters/info/Traveler (Anemo)`;
+      }
+      else if (character === 'Aloy') {
+        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Aloy`;
+      }
+      else if (character === 'Kujou Sara') {
+        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Sara`;
+      }
+      else if (character === 'Raiden Shogun') {
+        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Raiden`;
+      }
+      else if (character === 'Sangonomiya Kokomi') {
+        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Kokomi`;
+      }
+      else if (character === 'Sayu') {
+        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Sayu`;
+      }
+      else if (character === 'Yoimiya') {
+        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Yoimiya`;
       }
       else {
         URL = `https://genshin-app-api.herokuapp.com/api/characters/info/${character}`;

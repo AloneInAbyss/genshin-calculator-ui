@@ -10,6 +10,9 @@ const Characters = {
   'Albedo': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/albedo/icon.png',
   },
+  'Aloy': {
+    img: 'https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Character_Aloy_Thumb.png',
+  },
   'Amber': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/amber/icon.png',
   },
@@ -58,6 +61,9 @@ const Characters = {
   'Klee': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/klee/icon.png',
   },
+  'Kujou Sara': {
+    img: 'https://static.wikia.nocookie.net/gensin-impact/images/9/96/Character_Kujou_Sara_Thumb.png',
+  },
   'Lisa': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/lisa/icon.png',
   },
@@ -73,11 +79,20 @@ const Characters = {
   'Qiqi': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/qiqi/icon.png',
   },
+  'Raiden Shogun': {
+    img: 'https://static.wikia.nocookie.net/gensin-impact/images/5/52/Character_Raiden_Shogun_Thumb.png',
+  },
   'Razor': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/razor/icon.png',
   },
   'Rosaria': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/rosaria/icon.png',
+  },
+  'Sangonomiya Kokomi': {
+    img: 'https://static.wikia.nocookie.net/gensin-impact/images/c/cc/Character_Sangonomiya_Kokomi_Thumb.png',
+  },
+  'Sayu': {
+    img: 'https://static.wikia.nocookie.net/gensin-impact/images/e/ec/Character_Sayu_Thumb.png',
   },
   'Sucrose': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/sucrose/icon.png',
@@ -105,6 +120,9 @@ const Characters = {
   },
   'Yanfei': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/yanfei/icon.png',
+  },
+  'Yoimiya': {
+    img: 'https://static.wikia.nocookie.net/gensin-impact/images/0/05/Character_Yoimiya_Thumb.png',
   },
   'Zhongli': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/zhongli/icon.png',

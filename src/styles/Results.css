@@ -3,10 +3,20 @@
   display: inline-block;
 }
 
+.image-results .image-container {
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+}
+
 .image-results img {
   margin: auto;
-  max-width: 75px;
-  border: 1px solid white;
+  max-width: 65px;
 }
 
 @media screen and (max-width: 576px) {
