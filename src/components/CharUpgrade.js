@@ -93,6 +93,9 @@ function CharUpgrade(props) {
       else if (character === 'Aloy') {
         URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Aloy`;
       }
+      else if (character === 'Ayaka') {
+        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Ayaka`;
+      }
       else if (character === 'Kujou Sara') {
         URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Sara`;
       }
