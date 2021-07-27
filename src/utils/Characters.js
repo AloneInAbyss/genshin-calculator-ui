@@ -13,6 +13,9 @@ const Characters = {
   'Aloy': {
     img: 'https://static.wikia.nocookie.net/gensin-impact/images/6/6a/Character_Aloy_Thumb.png',
   },
+  'Ayaka': {
+    img: 'https://static.wikia.nocookie.net/gensin-impact/images/f/fd/Character_Kamisato_Ayaka_Thumb.png',
+  },
   'Amber': {
     img: 'https://res.cloudinary.com/dnoibyqq2/image/upload/v1622044760/genshin-app/characters/amber/icon.png',
   },
