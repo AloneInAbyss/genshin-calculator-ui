@@ -11,13 +11,19 @@ function App() {
   const fetchData = (url) => {
     fetch(url)
       .then(res => res.json())
-      .then(data => setData(data));
+      .then(data => setData(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
   const fetchImages = (url) => {
     fetch(url)
       .then(res => res.json())
-      .then(data => setImages(data));
+      .then(data => setImages(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
   const clearData = () => {
