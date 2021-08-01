@@ -33,7 +33,7 @@ function App() {
   return (
     <Container fluid="md">
       <main id="content" className="col-12 col-lg-8 mx-auto bg-dark text-light">
-        <h1 className="display-4 text-center py-3">Cálculos</h1>
+        <h1 className="display-4 text-center py-3">Genshin Calculator</h1>
         <CharUpgrade fetchData={fetchData} fetchImages={fetchImages} clearData={clearData} />
         <Results data={data} images={images} />
       </main>
