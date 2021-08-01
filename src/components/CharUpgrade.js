@@ -3,6 +3,57 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import Characters from "../utils/Characters";
 import '../styles/Calculations.css';
 
+function getCharactersURL(initialLevel, finalLevel, initialAscension, finalAscension) {
+  let URL = 'https://genshin-calculator-api.herokuapp.com/ascension/character?';
+  URL += 'initial-level=' + initialLevel;
+  URL += '&final-level=' + finalLevel;
+  URL += '&initial-ascension=' + initialAscension;
+  URL += '&final-ascension=' + finalAscension;
+  return URL;
+}
+
+function getImagesURL(character) {
+  let myURL = 'https://genshin-calculator-api.herokuapp.com/material/character';
+  let genshinApiURL = 'https://genshin-app-api.herokuapp.com/api/characters/info/';
+
+  let URL;
+  if (character === 'Hu Tao') {
+    // URL = genshinApiURL + 'Hutao';
+    URL = myURL + '?character=Hutao';
+  }
+  else if (character === 'Kazuha') {
+    URL = myURL + '?character=Kazuha';
+  }
+  else if (character === 'Traveler') {
+    URL = genshinApiURL + 'Traveler (Anemo)';
+  }
+  else if (character === 'Aloy') {
+    URL = myURL + '?character=Aloy';
+  }
+  else if (character === 'Ayaka') {
+    URL = myURL + '?character=Ayaka';
+  }
+  else if (character === 'Kujou Sara') {
+    URL = myURL + '?character=Sara';
+  }
+  else if (character === 'Raiden Shogun') {
+    URL = myURL + '?character=Raiden';
+  }
+  else if (character === 'Sangonomiya Kokomi') {
+    URL = myURL + '?character=Kokomi';
+  }
+  else if (character === 'Sayu') {
+    URL = myURL + '?character=Sayu';
+  }
+  else if (character === 'Yoimiya') {
+    URL = myURL + '?character=Yoimiya';
+  }
+  else {
+    URL = genshinApiURL + character;
+  }
+  return URL;
+}
+
 function CharUpgrade(props) {
   const [character, setCharacter] = useState(Object.keys(Characters)[0]);
   const [initialLevel, setInitialLevel] = useState('');
@@ -35,6 +86,7 @@ function CharUpgrade(props) {
         break;
     }
   }
+
   const verifyFinalAscension = (event) => {
     setFinalLevel(event.target.value);
     switch(event.target.value) {
@@ -73,48 +125,8 @@ function CharUpgrade(props) {
       setErrorMessage(false);
     }
     else {
-      let URL = 'https://genshin-calculator-api.herokuapp.com/ascension/character?';
-      URL += 'initial-level=' + initialLevel;
-      URL += '&final-level=' + finalLevel;
-      URL += '&initial-ascension=' + initialAscension;
-      URL += '&final-ascension=' + finalAscension;
-      props.fetchData(URL);
-
-      if (character === 'Hu Tao') {
-        // URL = `https://genshin-app-api.herokuapp.com/api/characters/info/Hutao`;
-        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Hutao`;
-      }
-      else if (character === 'Kazuha') {
-        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Kazuha`;
-      }
-      else if (character === 'Traveler') {
-        URL = `https://genshin-app-api.herokuapp.com/api/characters/info/Traveler (Anemo)`;
-      }
-      else if (character === 'Aloy') {
-        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Aloy`;
-      }
-      else if (character === 'Ayaka') {
-        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Ayaka`;
-      }
-      else if (character === 'Kujou Sara') {
-        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Sara`;
-      }
-      else if (character === 'Raiden Shogun') {
-        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Raiden`;
-      }
-      else if (character === 'Sangonomiya Kokomi') {
-        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Kokomi`;
-      }
-      else if (character === 'Sayu') {
-        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Sayu`;
-      }
-      else if (character === 'Yoimiya') {
-        URL = `https://genshin-calculator-api.herokuapp.com/material/character?character=Yoimiya`;
-      }
-      else {
-        URL = `https://genshin-app-api.herokuapp.com/api/characters/info/${character}`;
-      }
-      props.fetchImages(URL);
+      props.fetchData(getCharactersURL(initialLevel, finalLevel, initialAscension, finalAscension));
+      props.fetchImages(getImagesURL(character));
     }
 
     setValidated(true);
@@ -286,7 +298,7 @@ function CharUpgrade(props) {
           O nível final deve ser maior que o nível inicial!
         </div>
 
-        <Row className="mt-3 d-flex justify-content-center">
+        <Row className="mt-4 d-flex justify-content-center">
           <Col className="text-center text-sm-end mt-1">
             <Button size="lg" variant="primary" type="submit" className="w-100 form-btn" id="btn-calculate">
               Calcular
