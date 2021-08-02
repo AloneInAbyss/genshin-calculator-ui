@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
+import TalentsForm from "./TalentsForm";
 import Characters from "../utils/Characters";
 import '../styles/Calculations.css';
 
@@ -65,6 +66,13 @@ function CharUpgrade(props) {
   const [errorMessage, setErrorMessage] = useState(false);
   const [validated, setValidated] = useState(false);
 
+  const [NAInitialLevel, setNAInitialLevel] = useState('');
+  const [ESInitialLevel, setESInitialLevel] = useState('');
+  const [EBInitialLevel, setEBInitialLevel] = useState('');
+  const [NAFinalLevel, setNAFinalLevel] = useState('');
+  const [ESFinalLevel, setESFinalLevel] = useState('');
+  const [EBFinalLevel, setEBFinalLevel] = useState('');
+
   const charactersOptions = [];
   for (let char in Characters) {
     charactersOptions.push(<option key={char} value={char}>{char}</option>);
@@ -112,9 +120,16 @@ function CharUpgrade(props) {
     if (
       parseInt(initialLevel) > parseInt(finalLevel) ||
       (parseInt(initialLevel) === parseInt(finalLevel) && initialAscension === 'true') ||
-      (parseInt(initialLevel) === parseInt(finalLevel) && finalAscension === 'false')
-    )
+      (parseInt(initialLevel) === parseInt(finalLevel) && finalAscension === 'false') ||
+      parseInt(NAInitialLevel) > parseInt(NAFinalLevel) ||
+      parseInt(ESInitialLevel) > parseInt(ESFinalLevel) ||
+      parseInt(EBInitialLevel) > parseInt(EBFinalLevel) ||
+      (!isNaN(parseInt(NAInitialLevel)) && isNaN(parseInt(NAFinalLevel))) ||
+      (!isNaN(parseInt(ESInitialLevel)) && isNaN(parseInt(ESFinalLevel))) ||
+      (!isNaN(parseInt(EBInitialLevel)) && isNaN(parseInt(EBFinalLevel)))
+    ) {
       setErrorMessage(true);
+    }
     else if (
       form.checkValidity() === false ||
       !(parseInt(initialLevel) >= 1) ||
@@ -125,6 +140,7 @@ function CharUpgrade(props) {
       setErrorMessage(false);
     }
     else {
+      setErrorMessage(false);
       props.fetchData(getCharactersURL(initialLevel, finalLevel, initialAscension, finalAscension));
       props.fetchImages(getImagesURL(character));
     }
@@ -140,6 +156,13 @@ function CharUpgrade(props) {
     setIsInitialAscensionAvailable(false);
     setIsFinalAscensionAvailable(false);
     setErrorMessage(false);
+
+    setNAInitialLevel('');
+    setESInitialLevel('');
+    setEBInitialLevel('');
+    setNAFinalLevel('');
+    setESFinalLevel('');
+    setEBFinalLevel('');
 
     setValidated(false);
     props.clearData();
@@ -287,6 +310,15 @@ function CharUpgrade(props) {
             </Row>
           </Col>
         </Row>
+
+        <TalentsForm
+          NAInitialLevel={NAInitialLevel} setNAInitialLevel={setNAInitialLevel}
+          ESInitialLevel={ESInitialLevel} setESInitialLevel={setESInitialLevel}
+          EBInitialLevel={EBInitialLevel} setEBInitialLevel={setEBInitialLevel}
+          NAFinalLevel={NAFinalLevel} setNAFinalLevel={setNAFinalLevel}
+          ESFinalLevel={ESFinalLevel} setESFinalLevel={setESFinalLevel}
+          EBFinalLevel={EBFinalLevel} setEBFinalLevel={setEBFinalLevel}
+        />
 
         <div
           className={
